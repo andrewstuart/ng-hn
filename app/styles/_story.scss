@@ -1,15 +1,22 @@
 $ui-main-color: orange;
 
+.control {
+  display: block;
+  margin: 0 auto;
+  width: 60%;
+  position: relative;
+
+  .paginator {
+    margin: 0 auto;
+  }
+}
+
+
 div.story {
-  margin-top: 1.5em;
+  margin: 1em 0;
 
   header {
   }
-
-  // :hover {
-  //   background-color: black;
-  // }
-
   a {
     font-size: 1.15em;
     color: $ui-main-color;

@@ -1,18 +1,23 @@
 <div class="header">
-  <ul class="nav nav-pills pull-right">
-    <li class="active"><a ng-href="#">Home</a></li>
-    <li><a ng-href="#">About</a></li>
-  </ul>
+  <!-- <ul class="nav nav-pills pull-right"> -->
+  <!--   <li class="active"><a ng-href="#">Home</a></li> -->
+  <!--   <li><a ng-href="#">About</a></li> -->
+  <!-- </ul> -->
   <h3 class="text-muted">HackerNewsJS</h3>
 </div>
 
-<select ng-options="number for number in lengthOptions" ng-model="numStories"></select>
+<div class="control">
+  <span class="paginator">
+    <a class="btn btn-warning" ng-click="page(-1)" ng-class="{disabled: c.page * numStories === 0}"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    {{c.page * numStories}}-{{(c.page + 1) * numStories}} / {{stories.length}} 
+    <a class="btn btn-warning" ng-click="page(1)" ng-class="{disabled: (c.page + 1) * numStories >= stories.length}"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    <ul class="dropdown-menu" role="menu">
+      <li ng-repeat="number in lengthOptions" ng-click="numStories = number">{{number}}</li>
+    </ul>
+  </span>
+</div>
 
-<a class="btn btn-warning" ng-click="page(-1)" ng-class="{disabled: c.page * numStories === 0}">Prev</a>
-{{c.page}}
-<a class="btn btn-warning" ng-click="page(1)" ng-class="{disabled: (c.page + 1) * numStories >= stories.length}">Next</a>
-
-<div class="story" ng-repeat="story in stories | startFrom: c.page * numStories | limitTo: numStories">
+<div class="story" ng-repeat="story in stories | orderBy:'points':true | startFrom: c.page * numStories | limitTo: numStories">
   <a ng-href="{{story.url}}">{{story.title}}</a>
   <header>
     <span ng-if="story.points">
@@ -29,5 +34,5 @@
 </div>
 
 <div class="footer">
-  <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+  <p><span class="glyphicon glyphicon-thumbs-up"></span> Andrew Stuart</p>
 </div>
