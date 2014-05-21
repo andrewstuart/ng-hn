@@ -11,4 +11,8 @@ angular.module('tempApp')
     $http.get("http://localhost:8000").success(function(data) {
       $scope.stories = data.articles;
     });
+
+    $scope.lengthOptions = [10, 20, 30, 40, 50];
+
+    $scope.numStories = 20;
   }]);
