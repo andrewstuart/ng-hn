@@ -11,9 +11,9 @@
     <a class="btn btn-warning" ng-click="page(-1)" ng-class="{disabled: c.page * numStories === 0}"><span class="glyphicon glyphicon-chevron-left"></span></a>
     {{c.page * numStories}}-{{(c.page + 1) * numStories}} / {{stories.length}} 
     <a class="btn btn-warning" ng-click="page(1)" ng-class="{disabled: (c.page + 1) * numStories >= stories.length}"><span class="glyphicon glyphicon-chevron-right"></span></a>
-    <ul class="dropdown-menu" role="menu">
-      <li ng-repeat="number in lengthOptions" ng-click="numStories = number">{{number}}</li>
-    </ul>
+    <span class="numStories">
+      <select class="input-sm" ng-options="number for number in lengthOptions" ng-model="numStories"></select>
+    </span>
   </span>
 </div>
 
