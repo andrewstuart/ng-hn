@@ -15,4 +15,14 @@ angular.module('tempApp')
     $scope.lengthOptions = [10, 20, 30, 40, 50];
 
     $scope.numStories = 20;
+
+    $scope.c = {page: 0}
+
+    $scope.page = function(num) {
+      var newPage = $scope.c.page + num;
+
+      if(newPage >= 0 && newPage * $scope.numStories <= $scope.stories.length + $scope.numStories) {
+        $scope.c.page = newPage;
+      }
+    };
   }]);
