@@ -3,11 +3,15 @@ $ui-main-color: orange;
 div.story {
   margin-top: 1.5em;
 
+  header {
+  }
+
   // :hover {
   //   background-color: black;
   // }
 
   a {
+    font-size: 1.15em;
     color: $ui-main-color;
   }
 
