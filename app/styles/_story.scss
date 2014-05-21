@@ -1,3 +1,5 @@
+$ui-main-color: orange;
+
 div.story {
   margin-top: 1.5em;
 
@@ -6,6 +8,7 @@ div.story {
   // }
 
   a {
+    color: $ui-main-color;
   }
 
   .points {
@@ -13,7 +16,7 @@ div.story {
   }
 
   .user {
-    color: #333;
+    color: $ui-main-color;
   }
 
   .ago {

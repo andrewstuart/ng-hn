@@ -2,19 +2,23 @@
   <ul class="nav nav-pills pull-right">
     <li class="active"><a ng-href="#">Home</a></li>
     <li><a ng-href="#">About</a></li>
-    <li><a ng-href="#">Contact</a></li>
   </ul>
-  <h3 class="text-muted">temp</h3>
+  <h3 class="text-muted">HackerNewsJS</h3>
 </div>
 
 <div class="story" ng-repeat="story in stories">
   <a ng-href="{{story.url}}">{{story.title}}</a>
   <header>
-    <span class="points">({{story.points}})</span>
-    Posted by
-    <span class="user">{{story.user}}</span>
+    <span ng-if="story.points">
+      <span class="points">({{story.points}})</span>
+    </span>
+    <span ng-if="story.user">
+      Posted by
+      <span class="user">{{story.user}}</span>
+    </span>
     <span class="ago">{{story.createdAgo}}</span>
     ago
+    <span ng-if="story.numComments"> | <span class="comments" ng-if="story.numComments">{{story.numComments}} comments</span> </span>
   </header>
 </div>
 
