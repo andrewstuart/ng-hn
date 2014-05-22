@@ -3,11 +3,7 @@
 angular.module('tempApp')
   .directive('comments', ['RecursionHelper', function (RecursionHelper) {
     return {
-      template: '<div class="comment" ng-repeat="comment in src">' +
-            '<span class="user">{{comment.user}}</span>: ' +
-            '<span class="comment-text">{{comment.text}}</span>' +
-            '<comments ng-if="comment.comments.length" src="comment.comments"></comments>' +
-          '</div>',
+      templateUrl: '/views/partials/comment.html',
       restrict: 'E',
       scope: {
         src: '='
