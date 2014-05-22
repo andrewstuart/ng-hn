@@ -1,37 +1,29 @@
 <div class="header">
   <!-- <ul class="nav nav-pills pull-right"> -->
-  <!--   <li class="active"><a ng-href="#">Home</a></li> -->
-  <!--   <li><a ng-href="#">About</a></li> -->
-  <!-- </ul> -->
+    <!--   <li class="active"><a ng-href="#">Home</a></li> -->
+    <!--   <li><a ng-href="#">About</a></li> -->
+    <!-- </ul> -->
   <h3 class="text-muted">HackerNewsJS</h3>
 </div>
 
-<div class="control">
-  <span class="paginator">
-    <a class="btn btn-warning" ng-click="page(-1)" ng-class="{disabled: c.page * numStories === 0}"><span class="glyphicon glyphicon-chevron-left"></span></a>
-    {{c.page * numStories}}-{{(c.page + 1) * numStories}} / {{stories.length}} 
-    <a class="btn btn-warning" ng-click="page(1)" ng-class="{disabled: (c.page + 1) * numStories >= stories.length}"><span class="glyphicon glyphicon-chevron-right"></span></a>
-    <span class="numStories">
-      <select class="input-sm" ng-options="number for number in lengthOptions" ng-model="numStories"></select>
-    </span>
+<paginator></paginator>
+
+<div class="story" ng-repeat="story in stories | orderBy:sortField:!asc | startFrom: c.page * numStories | limitTo: numStories">
+  <header>
+    <span class="story-number">{{c.page * numStories + $index + 1}}. </span>
+    <a ng-href="{{story.url}}">{{story.title}}</a>
+  </header>
+  <span ng-if="story.points">
+    <span class="points">({{story.points}})</span>
   </span>
+  <span ng-if="story.user">
+    Posted by <span class="user">{{story.user}}</span>
+  </span>
+  <span class="ago">{{story.createdAgo}}</span> ago
+  <span ng-if="story.numComments"> | <a ng-href="#/comment/{{story.id}}" class="comments" ng-if="story.numComments">{{story.numComments}} comments</a> </span>
 </div>
 
-<div class="story" ng-repeat="story in stories | orderBy:'points':true | startFrom: c.page * numStories | limitTo: numStories">
-  <a ng-href="{{story.url}}">{{story.title}}</a>
-  <header>
-    <span ng-if="story.points">
-      <span class="points">({{story.points}})</span>
-    </span>
-    <span ng-if="story.user">
-      Posted by
-      <span class="user">{{story.user}}</span>
-    </span>
-    <span class="ago">{{story.createdAgo}}</span>
-    ago
-    <span ng-if="story.numComments"> | <span class="comments" ng-if="story.numComments">{{story.numComments}} comments</span> </span>
-  </header>
-</div>
+<paginator></paginator>
 
 <div class="footer">
   <p><span class="glyphicon glyphicon-thumbs-up"></span> Andrew Stuart</p>

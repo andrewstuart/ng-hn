@@ -21,6 +21,28 @@ angular.module('tempApp')
 
     $scope.c = {page: 0}
 
+    $scope.sortables = [{
+      field: 'position',
+      name: 'Original'
+    },{
+      field: 'points',
+      name: 'Score'
+    },{
+      field: 'numComments',
+      name: 'Comments'
+    },{
+      field: 'id',
+      name: 'ID'
+    },{
+      field: 'title',
+      name: 'Title'
+    },{
+      field: 'user',
+      name: 'User'
+    }];
+
+    $scope.sortField = 'position';
+
     $scope.page = function(num) {
       var newPage = $scope.c.page + num;
 

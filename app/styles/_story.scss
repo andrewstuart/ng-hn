@@ -1,9 +1,19 @@
 $ui-main-color: orange;
 
+.filter-container {
+  margin-top: 1.5em;
+
+  .filter {
+    padding: 1.2em;
+    background-color: #EEE;
+    border-radius: 1em;
+  }
+}
+
 .control {
+  text-align: center;
   display: block;
   margin: 0 auto;
-  width: 60%;
   position: relative;
 
   .paginator {
@@ -15,11 +25,16 @@ $ui-main-color: orange;
 div.story {
   margin: 1em 0;
 
-  header {
-  }
   a {
-    font-size: 1.15em;
     color: $ui-main-color;
+
+    &:hover {
+      color: red;
+    }
+  }
+
+  header {
+    font-size: 1.15em;
   }
 
   .points {

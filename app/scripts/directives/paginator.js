@@ -1,0 +1,27 @@
+'use strict';
+
+angular.module('tempApp')
+  .directive('paginator', function () {
+    return {
+      template: '<div class="control">' +
+        '<span class="paginator">' +
+          '<a class="btn btn-warning" ng-click="page(-1)" ng-class="{disabled: c.page * numStories === 0}"><span class="glyphicon glyphicon-chevron-left"></span></a>' +
+          ' {{c.page * numStories + 1}}-{{(c.page + 1) * numStories}} / {{stories.length}} ' +
+          '<a class="btn btn-warning" ng-click="page(1)" ng-class="{disabled: (c.page + 1) * numStories >= stories.length}"><span class="glyphicon glyphicon-chevron-right"></span></a>' +
+          '    <span ng-click="filter = !filter" class="glyphicon glyphicon-filter"></span>' +
+          '<div class="filter-container"><span class="filter" ng-show="filter">' +
+            '<span class="numStories">' +
+            '<select class="input-sm" ng-options="number for number in lengthOptions" ng-model="numStories"></select>' +
+            '</span>' +
+            ' <a class="btn btn-success" ng-click="asc = !asc"> ' +
+              ' <span ng-if="!asc" class="glyphicon glyphicon-sort-by-attributes-alt"></span> ' +
+              ' <span ng-if="asc" class="glyphicon glyphicon-sort-by-attributes"></span>' +
+            ' </a>' +
+            ' <select class="input-sm" ng-options="item.field as item.name for item in sortables" ng-model="sortField"></select>' +
+          '</div>' +
+          '</span>' +
+        '</span></div>',
+      restrict: 'E',
+      replace: true
+    };
+  });
