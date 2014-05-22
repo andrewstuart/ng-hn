@@ -13,6 +13,10 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/comments/:commentId', {
+        templateUrl: 'views/comments.html',
+        controller: 'CommentsCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

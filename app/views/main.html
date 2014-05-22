@@ -1,11 +1,3 @@
-<div class="header">
-  <!-- <ul class="nav nav-pills pull-right"> -->
-    <!--   <li class="active"><a ng-href="#">Home</a></li> -->
-    <!--   <li><a ng-href="#">About</a></li> -->
-    <!-- </ul> -->
-  <h3 class="text-muted">HackerNewsJS</h3>
-</div>
-
 <paginator></paginator>
 
 <div class="story" ng-repeat="story in stories | orderBy:sortField:!asc | startFrom: c.page * numStories | limitTo: numStories">
@@ -20,7 +12,7 @@
     Posted by <span class="user">{{story.user}}</span>
   </span>
   <span class="ago">{{story.createdAgo}}</span> ago
-  <span ng-if="story.numComments"> | <a ng-href="#/comment/{{story.id}}" class="comments" ng-if="story.numComments">{{story.numComments}} comments</a> </span>
+  <span ng-if="story.numComments"> | <a ng-href="#/comments/{{story.id}}" class="comments" ng-if="story.numComments">{{story.numComments}} comments</a> </span>
 </div>
 
 <paginator></paginator>
