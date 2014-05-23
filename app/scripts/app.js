@@ -1,13 +1,22 @@
 'use strict';
 
 angular
-  .module('tempApp', [
+.module('tempApp', [
     'ngCookies',
     'ngResource',
     'ngSanitize',
+    'xc.indexedDB',
     'ngRoute'
   ])
-  .config(function ($routeProvider) {
+  .config(['$indexedDBProvider', function($indexedDBProvider) {
+    $indexedDBProvider.onTransactionComplete = undefined;
+    $indexedDBProvider
+      .connection('hackernews')
+      .upgradeDatabase(3, function(e, db) {
+        var stories = db.createObjectStore('stories', {keyPath: 'id'});
+      });
+  }])
+  .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -20,7 +29,7 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  }).filter('startFrom', function() {
+  }]).filter('startFrom', function() {
     return function(input, start) {
       input = input || [];
       start = +start; //parse to int

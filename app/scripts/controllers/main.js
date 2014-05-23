@@ -1,18 +1,14 @@
 'use strict';
 
 angular.module('tempApp')
-  .controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-
+  .controller('MainCtrl', ['$scope', '$http', '$indexedDB', function ($scope, $http, $indexedDB) {
+    var stories = $indexedDB.objectStore('stories');
     var next;
 
-    $http.get("http://localhost:8000").success(function(data) {
+    $http.get("http://astuart.co:8000").success(function(data) {
       $scope.stories = data.articles;
       next = data.next;
+      return stories.upsert(data.articles);
     });
 
     $scope.lengthOptions = [10, 20, 30, 40, 50];
@@ -20,6 +16,8 @@ angular.module('tempApp')
     $scope.numStories = 20;
 
     $scope.c = {page: 0}
+
+    $scope.filter = true;
 
     $scope.sortables = [{
       field: 'position',
@@ -53,7 +51,7 @@ angular.module('tempApp')
       }
 
       if((newPage + 1) * $scope.numStories >= $scope.stories.length) {
-        $http.get("http://localhost:8000/next/" + next).success(function(data) {
+        $http.get("http://astuart.co:8000/next/" + next).success(function(data) {
           $scope.stories = data.articles;
           next = data.next;
 

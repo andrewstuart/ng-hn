@@ -1,6 +1,6 @@
 <paginator></paginator>
 
-<div class="story" ng-repeat="story in stories | orderBy:sortField:!asc | startFrom: c.page * numStories | limitTo: numStories">
+<div class="story" ng-repeat="story in stories | filter:search | orderBy:sortField:!asc | startFrom: c.page * numStories | limitTo: numStories">
   <header>
     <span class="story-number">{{c.page * numStories + $index + 1}}. </span>
     <a ng-href="{{story.url}}">{{story.title}}</a>

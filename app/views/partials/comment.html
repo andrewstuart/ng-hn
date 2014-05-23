@@ -1,12 +1,9 @@
 <div class="comment" ng-repeat="comment in src">
   <header>
     <span class="user">{{comment.user}}</span>:
-    <span ng-click="folded = !folded">
-      <span class="glyphicon glyphicon-chevron-up" ng-if="!folded"> </span>
-      <span class="glyphicon glyphicon-chevron-down" ng-if="folded"> </span>
-    </span>
+    <span ng-click="folded = !folded" class="glyphicon glyphicon-chevron-down fold" ng-class="{'folded': folded}"> </span>
   </header>
-  <section ng-if="!folded">
+  <section ng-class="{'folded': folded}">
     <div class="comment-text">{{comment.text}}</div>
     <comments ng-if="comment.comments.length" src="comment.comments"></comments>
   </section>

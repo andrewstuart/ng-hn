@@ -1,11 +1,45 @@
 $ui-main-color: orange;
 
-.comment .comment {
-  padding-left: 2em;
+.glyphicon-search {
+  margin-left: -1.75em;
+  margin-right: 1em;
+}
+
+.search {
+  border-radius: .5em;
+  padding: .25em;
+}
+
+section {
+  transition-duration: .5s;
+  transform-origin: top;
+  transition-timing-function: ease;
+  max-height: 500em;
+}
+
+section.folded {
+  transform: scaleY(0);
+  max-height: 0;
+  opacity: 0;
+}
+
+.comment {
+  .fold {
+    transition-duration: .5s;
+    transition-timing-function: ease;
+  }
+
+  .fold.folded {
+    transform: rotate(-180deg);
+  }
+
+  .comment {
+    padding-left: 2em;
+  }
 }
 
 .filter-container {
-  margin-top: 1.5em;
+  margin: 1.5em 0;
 
   .filter {
     padding: 1.2em;
