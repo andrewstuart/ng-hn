@@ -1,5 +1,6 @@
-$ui-main-color: orange;
+@import "compass";
 
+$ui-main-color: orange;
 
 .user {
   color: $ui-main-color;
@@ -12,9 +13,11 @@ $ui-main-color: orange;
 
 h1 a {
   color: $ui-main-color;
+  transition-duration: 0.3s;
 
   &:hover {
-    color: red;
+    color: mix(orange, red, 80);
+    text-decoration: none;
   }
 }
 
@@ -62,8 +65,10 @@ section {
   }
 
   &.folded {
-    .fold {
-      transform: rotate(-180deg);
+    box-shadow: inset $offset $offset $offset transparentize(black, 0.9);
+
+    > header > .fold {
+      transform: rotateZ(-180deg);
     }
 
     section {
