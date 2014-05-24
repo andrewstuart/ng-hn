@@ -3,7 +3,7 @@
 <div class="story" ng-repeat="story in stories | filter:search | orderBy:sortField:!asc | startFrom: c.page * numStories | limitTo: numStories">
   <header>
     <span class="story-number">{{c.page * numStories + $index + 1}}. </span>
-    <a ng-href="{{story.url}}">{{story.title}}</a>
+    <a ng-click="setStory(story)">{{story.title}}</a>
   </header>
   <span ng-if="story.points">
     <span class="points">({{story.points}})</span>
@@ -16,6 +16,8 @@
 </div>
 
 <paginator></paginator>
+
+<iframe class="story-panel" src="{{current.url}}"></iframe>
 
 <div class="footer">
   <p><span class="glyphicon glyphicon-thumbs-up"></span> Andrew Stuart</p>
