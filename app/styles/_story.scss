@@ -6,6 +6,7 @@ $ui-main-color: orange;
 }
 
 $screen-width: 1920px;
+$screen-height: 100%;
 
 #iframe-back {
   transform: translateY(-$screen-width);
@@ -22,21 +23,22 @@ $screen-width: 1920px;
   }
 
   .glyphicon {
-    transform: rotate(90deg);
     font-size: 2em;
     margin-top: 0.25em;
     margin-left: 0.5em;
   }
 
-  a {
+  .link {
     color: white;
     float: right;
     margin-right: 1.25em;
-    font-size: 1.25em;
-    margin-top: 10px;
 
-    :hover {
-      color: red;
+    a {
+      font-size: 1.25em;
+      color: white;
+      &:hover {
+        color: red;
+      }
     }
   }
 }
@@ -50,7 +52,7 @@ iframe {
   height: calc(100% - 3em);
 
   + div {
-    transform: translateZ(0);
+    transform: translateY(0);
   }
 }
 
@@ -64,7 +66,7 @@ iframe.shown {
   width: 100%;
   + div {
     height: 0;
-    transform: translateY(-$screen-width);
+    transform: translateY(-$screen-height);
   }
 }
 
@@ -133,8 +135,6 @@ section {
   }
 
   &.folded {
-    box-shadow: inset $offset $offset $offset transparentize(black, 0.9);
-
     > header > .fold {
       transform: rotateZ(-180deg);
     }

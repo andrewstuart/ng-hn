@@ -6,7 +6,7 @@ angular.module('tempApp')
     var next;
 
     $scope.setStory = function(story) {
-      $rootScope.currentUrl = $sce.trustAsResourceUrl(story.url);
+      $rootScope.currentUrl = story.url;
       $rootScope.currentTitle = story.title;
     };
 
@@ -17,6 +17,10 @@ angular.module('tempApp')
     }).error(function() {
       stories.getAll().then(function(articles) {
         $scope.stories = articles;
+      });
+    }).finally(function() {
+      $scope.stories.forEach(function(art) {
+        art.url = $sce.trustAsResourceUrl(art.url);
       });
     });
 

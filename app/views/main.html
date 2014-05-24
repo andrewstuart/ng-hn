@@ -3,6 +3,7 @@
 <div class="story" ng-repeat="story in stories | filter:search | orderBy:sortField:!asc | startFrom: c.page * numStories | limitTo: numStories">
   <header>
     <span class="story-number">{{c.page * numStories + $index + 1}}. </span>
+    <a ng-src="{{story.url}}"<span class="glyphicon glyphicon-link"></span></a>
     <a ng-click="setStory(story)">{{story.title}}</a>
   </header>
   <span ng-if="story.points">
