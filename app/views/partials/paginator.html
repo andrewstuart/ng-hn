@@ -1,8 +1,8 @@
 <div class="control">
   <span class="paginator">
-    <a class="btn btn-warning" ng-click="page(-1)" ng-class="{disabled: c.page * numStories === 0}"><span class="glyphicon glyphicon-chevron-left"></span></a>
-    {{c.page * numStories + 1}}-{{(c.page + 1) * numStories}} / {{stories.length}}
-    <a class="btn btn-warning" ng-click="page(1)" ng-class="{disabled: (c.page + 1) * numStories >= stories.length}"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    <a class="btn btn-warning" ng-click=""><span class="glyphicon glyphicon-chevron-left"></span></a>
+    {{startFrom + 1}} - {{startFrom + numStories}} / {{stories.length}}
+    <a class="btn btn-warning" ng-click=""><span class="glyphicon glyphicon-chevron-right"></span></a>
     <span ng-click="showFilter = !showFilter" class="glyphicon glyphicon-filter"></span>
     <div class="filter-container">
       <span class="filter" ng-show="showFilter">

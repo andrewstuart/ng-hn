@@ -1,9 +1,11 @@
 <paginator></paginator>
 
-<div class="story" ng-repeat="story in stories | filter:search | orderBy:sortField:!asc | startFrom: c.page * numStories | limitTo: numStories">
+<div class="story" ng-repeat="story in stories | filter:search | startFrom:startFrom | orderBy:sortField:!asc | limitTo: numStories">
   <header>
-    <span class="story-number">{{c.page * numStories + $index + 1}}. </span>
-    <a ng-src="{{story.url}}"<span class="glyphicon glyphicon-link"></span></a>
+    <span class="number">{{startFrom + 1 + $index}}.</span>
+    <a ng-href="{{story.url}}">
+      <span class="glyphicon glyphicon-link"></span>
+    </a>
     <a ng-click="setStory(story)">{{story.title}}</a>
   </header>
   <span ng-if="story.points">
@@ -13,11 +15,19 @@
     Posted by <span class="user">{{story.user}}</span>
   </span>
   <span class="ago">{{story.createdAgo}}</span> ago
-  <span ng-if="story.numComments"> | <a ng-href="#/comments/{{story.id}}" class="comments" ng-if="story.numComments">{{story.numComments}} comments</a> </span>
+  <span ng-if="story.numComments">
+    <span class="divider">|</span>
+    <a ng-href="#/comments/{{story.id}}" class="comments" ng-if="story.numComments">
+      {{story.numComments}} comments
+    </a> 
+  </span>
 </div>
 
 <paginator></paginator>
 
 <div class="footer">
-  <p><span class="glyphicon glyphicon-thumbs-up"></span> Andrew Stuart</p>
+  <p>
+    <span class="glyphicon glyphicon-thumbs-up"></span>
+    <span class="creator">Andrew Stuart</span>
+  </p>
 </div>
