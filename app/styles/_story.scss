@@ -10,6 +10,15 @@ $ui-main-color: orange;
   padding: .25em;
 }
 
+h1 a {
+  color: $ui-main-color;
+
+  &:hover {
+    color: red;
+  }
+}
+
+
 section {
   transition-duration: 0.5s;
   transform-origin: top;
@@ -62,6 +71,12 @@ section {
       opacity: 0;
       height: 0;
     }
+  }
+}
+
+@media (max-width: 320px) {
+  .comment {
+    padding-left: 2px;
   }
 }
 

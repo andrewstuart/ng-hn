@@ -8,12 +8,12 @@ angular.module('tempApp')
     var dateStored = localStorage.getItem('lastPolled');
     var lastPolled = dateStored ? new Date(dateStored) : new Date(0);
 
-    if(lastPolled && new Date() - lastPolled < 120000) {
-      stories.getAll().then(function(articles) {
-        $scope.stories = articles;
-      });
-    } else {
-      stories.clear();
+    // if(lastPolled && new Date() - lastPolled < 120000) {
+    //   stories.getAll().then(function(articles) {
+    //     $scope.stories = articles;
+    //   });
+    // } else {
+    //   stories.clear();
       $http.get("http://astuart.co:8000").success(function(data) {
         lastPolled = new Date();
 
@@ -23,7 +23,7 @@ angular.module('tempApp')
         next = data.next;
         return stories.upsert(data.articles);
       });
-    }
+    // }
 
     $scope.lengthOptions = [10, 20, 30, 40, 50];
 
