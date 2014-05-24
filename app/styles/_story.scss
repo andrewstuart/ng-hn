@@ -17,6 +17,10 @@ $screen-width: 1920px;
   left: 0;
   z-index: 1;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   .glyphicon {
     transform: rotate(90deg);
     font-size: 2em;
@@ -27,6 +31,7 @@ $screen-width: 1920px;
   a {
     color: white;
     float: right;
+    margin-right: 1.25em;
     font-size: 1.25em;
     margin-top: 10px;
 
@@ -75,6 +80,7 @@ iframe.shown {
 
 h1 a {
   color: $ui-main-color;
+  cursor: pointer;
   transition-duration: 0.3s;
 
   &:hover {
@@ -182,6 +188,7 @@ div.story {
 
     &:hover {
       color: red;
+      cursor: pointer;
     }
   }
 
