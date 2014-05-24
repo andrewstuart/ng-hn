@@ -26,18 +26,21 @@
       <span class="glyphicon-arrow-left glyphicon"></span>
       <span class="link"><span class="glyphicon glyphicon-link"></span><a ng-href="{{$root.currentUrl}}" ng-click="$event.stopPropagation()">{{$root.currentTitle}}</a></span>
     </div>
+    <!-- TODO There's a better way to classify this I'm sure -->
     <iframe ng-class="{'shown': $root.currentUrl}" ng-src="{{$root.currentUrl}}"></iframe>
-    <div class="container">
-      <div class="header">
-        <!-- <ul class="nav nav-pills pull-right"> -->
-          <!--   <li class="active"><a ng-href="#">Home</a></li> -->
-          <!--   <li><a ng-href="#">About</a></li> -->
-          <!-- </ul> -->
-        <h3 class="text-muted">HackerNewsJS</h3>
-      </div>
+    <div class="meta-container">
+      <div class="container">
+        <div class="header">
+          <!-- <ul class="nav nav-pills pull-right"> -->
+            <!--   <li class="active"><a ng-href="#">Home</a></li> -->
+            <!--   <li><a ng-href="#">About</a></li> -->
+            <!-- </ul> -->
+          <h3 class="text-muted">HackerNewsJS</h3>
+        </div>
 
-      <!-- Add your site or application content here -->
-      <div class="view" ng-view=""></div>
+        <!-- Add your site or application content here -->
+        <div class="view" ng-view=""></div>
+      </div>
     </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->

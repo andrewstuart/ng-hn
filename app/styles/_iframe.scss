@@ -1,9 +1,22 @@
 $screen-width: 1920px;
 $screen-height: 100%;
 
+//Scrolling but 100%
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.meta-container {
+  position: absolute;
+  top: 0;
+  overflow-y: scroll;
+}
+
 #iframe-back, iframe, iframe + div{
   transition-duration: 1.5s;
   transition-timing-function: ease;
+  width: 100%;
 }
 
 #iframe-back {
@@ -48,7 +61,6 @@ iframe {
   height: calc(100% - 3em);
 
   + div {
-    overflow-y: scroll;
     height: 100%;
     transform: translateY(0);
   }
