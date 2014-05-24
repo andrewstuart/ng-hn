@@ -5,6 +5,10 @@ $ui-main-color: orange;
   margin-right: 1em;
 }
 
+.user {
+  color: $ui-main-color;
+}
+
 .search {
   border-radius: .5em;
   padding: .25em;
@@ -14,27 +18,41 @@ section {
   transition-duration: .5s;
   transform-origin: top;
   transition-timing-function: ease;
-  max-height: 500em;
-}
-
-section.folded {
-  transform: scaleY(0);
-  max-height: 0;
-  opacity: 0;
 }
 
 .comment {
+  display: block;
+  background-color: transparentize(#CCC, 0.9);
+  padding: 1em;
+  border-left: 5px solid transparentize($ui-main-color, 0.5);
+
+  border-radius: 0.5em;
+
+  $offset: 0.25em;
+  box-shadow: $offset $offset $offset transparentize(black, 0.9);
+
+  margin: 1em 0;
+
+  .user {
+    font-size: 1.25em;
+    font-weight: bold;
+  }
+
   .fold {
     transition-duration: .5s;
     transition-timing-function: ease;
   }
 
-  .fold.folded {
-    transform: rotate(-180deg);
-  }
+  &.folded {
+    .fold {
+      transform: rotate(-180deg);
+    }
 
-  .comment {
-    padding-left: 2em;
+    section {
+      transform: scaleY(0);
+      opacity: 0;
+      height: 0;
+    }
   }
 }
 
@@ -79,9 +97,6 @@ div.story {
     font-weight: bold;
   }
 
-  .user {
-    color: $ui-main-color;
-  }
 
   .ago {
   }
