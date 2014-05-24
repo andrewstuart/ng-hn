@@ -1,5 +1,5 @@
-<div class="comment" 
-  ng-repeat="comment in src" 
+<div class="comment"
+  ng-repeat="comment in src"
   ng-class="{'folded': folded, 'hovered': hovered}">
   <header ng-click="folded = !folded; $event.stopPropagation()"
     ng-mouseenter="hovered = true"
