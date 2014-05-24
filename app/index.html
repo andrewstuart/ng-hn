@@ -22,6 +22,11 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
+    <div id="iframe-back" ng-click="$root.currentUrl = null" ng-class="{'shown': $root.currentUrl}">
+      <span class="glyphicon-arrow-left glyphicon"></span>
+      <span><a ng-href="{{$root.currentUrl}}" ng-click="$event.stopPropagation()">{{$root.currentTitle}}</a></span>
+    </div>
+    <iframe ng-class="{'shown': $root.currentUrl}" ng-src="{{$root.currentUrl}}"></iframe>
     <div class="container">
       <div class="header">
         <!-- <ul class="nav nav-pills pull-right"> -->

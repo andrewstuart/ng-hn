@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('tempApp')
-  .controller('MainCtrl', ['$scope', '$http', '$indexedDB', '$sce', function ($scope, $http, $indexedDB, $sce) {
+  .controller('MainCtrl', ['$scope', '$http', '$indexedDB', '$sce', '$rootScope', function ($scope, $http, $indexedDB, $sce, $rootScope) {
     var stories = $indexedDB.objectStore('stories');
     var next;
 
     $scope.setStory = function(story) {
-      story.url = $sce.trustAsResourceUrl(story.url);
-      $scope.current = story;
+      $rootScope.currentUrl = $sce.trustAsResourceUrl(story.url);
+      $rootScope.currentTitle = story.title;
     };
 
     $http.get("http://astuart.co:8000").success(function(data) {
