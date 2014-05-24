@@ -1,5 +1,10 @@
-<div class="comment" ng-repeat="comment in src" ng-click="folded = !folded; $event.stopPropagation()" ng-class="{'folded': folded}">
-  <header>
+<div class="comment" 
+  ng-repeat="comment in src" 
+  ng-class="{'folded': folded, 'hovered': hovered}">
+  <header ng-click="folded = !folded; $event.stopPropagation()"
+    ng-mouseenter="hovered = true"
+    ng-mouseleave="hovered = false";
+    >
     <span class="glyphicon glyphicon-chevron-down fold"> </span>
     <span class="user">{{comment.user}}</span>:
   </header>

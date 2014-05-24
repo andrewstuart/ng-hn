@@ -5,19 +5,30 @@ angular.module('tempApp')
     var stories = $indexedDB.objectStore('stories');
     var next;
 
-    $http.get("http://astuart.co:8000").success(function(data) {
-      $scope.stories = data.articles;
-      next = data.next;
-      return stories.upsert(data.articles);
-    });
+    var lastPolled = new Date(localStorage.getItem('lastPolled'))
+
+    if(lastPolled && new Date() - lastPolled < 120000) {
+      stories.getAll().then(function(articles) {
+        $scope.stories = articles;
+      });
+    } else {
+      stories.clear();
+      $http.get("http://astuart.co:8000").success(function(data) {
+        lastPolled = new Date();
+        localStorage.setItem('lastPolled', lastPolled.toString());
+        $scope.stories = data.articles;
+        next = data.next;
+        return stories.upsert(data.articles);
+      });
+    }
 
     $scope.lengthOptions = [10, 20, 30, 40, 50];
 
     $scope.numStories = 20;
 
-    $scope.c = {page: 0}
+    $scope.c = {page: 0};
 
-    $scope.filter = true;
+    $scope.showFilter = true;
 
     $scope.sortables = [{
       field: 'position',
@@ -54,6 +65,8 @@ angular.module('tempApp')
         $http.get("http://astuart.co:8000/next/" + next).success(function(data) {
           $scope.stories = data.articles;
           next = data.next;
+
+          stories.upsert(data.articles);
 
           while (next[0] === '/') {
             next = next.substring(1);

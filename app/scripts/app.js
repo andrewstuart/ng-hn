@@ -4,6 +4,7 @@ angular
 .module('tempApp', [
     'ngCookies',
     'ngResource',
+    'ngTouch',
     'ngSanitize',
     'xc.indexedDB',
     'ngRoute'

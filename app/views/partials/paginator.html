@@ -3,9 +3,9 @@
     <a class="btn btn-warning" ng-click="page(-1)" ng-class="{disabled: c.page * numStories === 0}"><span class="glyphicon glyphicon-chevron-left"></span></a>
     {{c.page * numStories + 1}}-{{(c.page + 1) * numStories}} / {{stories.length}}
     <a class="btn btn-warning" ng-click="page(1)" ng-class="{disabled: (c.page + 1) * numStories >= stories.length}"><span class="glyphicon glyphicon-chevron-right"></span></a>
-    <span ng-click="filter = !filter" class="glyphicon glyphicon-filter"></span>
+    <span ng-click="showFilter = !showFilter" class="glyphicon glyphicon-filter"></span>
     <div class="filter-container">
-      <span class="filter" ng-show="filter">
+      <span class="filter" ng-show="showFilter">
         <input ng-model="search" class="search"></input>
         <span class="glyphicon glyphicon-search"></span>
         <span class="numStories">
