@@ -55,7 +55,7 @@ angular.module('tempApp')
     function getPagesAhead (numPages) {
       numPages = numPages || 1;
 
-      if ($scope.startFrom + numPages * $scope.numStories > $scope.stories.length) {
+      if ($scope.startFrom + (numPages + 1) * $scope.numStories > $scope.stories.length) {
         return getStories().then(function() {
           getPagesAhead();
         });
@@ -63,10 +63,14 @@ angular.module('tempApp')
     }
 
     $scope.page = function(num) {
+      //Cast to number then keep > 0
       num = Number.isNaN(+num) ? 20 : +num;
 
       //Change the page
       $scope.startFrom += num;
+      if($scope.startFrom < 0) {
+        $scope.startFrom = 0;
+      }
 
       //Make sure we have enough stories for the next page
       return getPagesAhead();
