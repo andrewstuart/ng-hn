@@ -1,8 +1,14 @@
 <div class="control">
   <span class="paginator">
-    <a class="btn btn-warning" ng-click=""><span class="glyphicon glyphicon-chevron-left"></span></a>
-    {{startFrom + 1}} - {{startFrom + numStories}} / {{stories.length}}
-    <a class="btn btn-warning" ng-click=""><span class="glyphicon glyphicon-chevron-right"></span></a>
+    <a class="btn btn-warning" ng-click="page(-numStories)">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <span class="page-display">
+      {{startFrom + 1}} - {{startFrom + numStories}} / {{stories.length}}
+    </span>
+    <a class="btn btn-warning" ng-click="page(numStories)">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
     <span ng-click="showFilter = !showFilter" class="glyphicon glyphicon-filter"></span>
     <div class="filter-container">
       <span class="filter" ng-show="showFilter">
