@@ -2,9 +2,9 @@
 
 angular
 .module('tempApp', [
+    'ngTouch',
     'ngCookies',
     'ngResource',
-    'ngTouch',
     'ngSanitize',
     'xc.indexedDB',
     'ngRoute'

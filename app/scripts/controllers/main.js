@@ -5,7 +5,8 @@ angular.module('tempApp')
     var stories = $indexedDB.objectStore('stories');
     var next;
 
-    var lastPolled = new Date(localStorage.getItem('lastPolled'))
+    var dateStored = localStorage.getItem('lastPolled');
+    var lastPolled = dateStored ? new Date(dateStored) : new Date(0);
 
     if(lastPolled && new Date() - lastPolled < 120000) {
       stories.getAll().then(function(articles) {
@@ -15,7 +16,9 @@ angular.module('tempApp')
       stories.clear();
       $http.get("http://astuart.co:8000").success(function(data) {
         lastPolled = new Date();
+
         localStorage.setItem('lastPolled', lastPolled.toString());
+
         $scope.stories = data.articles;
         next = data.next;
         return stories.upsert(data.articles);
