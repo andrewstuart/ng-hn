@@ -1,6 +1,6 @@
 <paginator></paginator>
 
-<div class="story" ng-repeat="story in stories | filter:search | startFrom:startFrom | orderBy:sortField:!asc | limitTo: numStories">
+<div class="story" ng-repeat="story in stories | filter:search | orderBy:sortField:!asc | startFrom:startFrom | limitTo: numStories">
   <header>
     <span class="number">{{startFrom + 1 + $index}}.</span>
     <a ng-href="{{story.url}}">
@@ -15,11 +15,11 @@
     Posted by <span class="user">{{story.user}}</span>
   </span>
   <span class="ago">{{story.createdAgo}}</span> ago
-  <span ng-if="story.numComments">
+  <span>
     <span class="divider">|</span>
-    <a ng-href="#/comments/{{story.id}}" class="comments" ng-if="story.numComments">
-      {{story.numComments}} comments
-    </a> 
+    <a ng-href="#/comments/{{story.id}}" class="comments">
+      {{story.numComments}} <ng-pluralize count="story.numComments" when="{'1': 'comment', 'other': 'comments'}"></ng-pluralize>
+    </a>
   </span>
 </div>
 

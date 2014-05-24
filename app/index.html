@@ -27,7 +27,7 @@
       <span class="link"><span class="glyphicon glyphicon-link"></span><a ng-href="{{$root.currentUrl}}" ng-click="$event.stopPropagation()">{{$root.currentTitle}}</a></span>
     </div>
     <!-- TODO There's a better way to classify this I'm sure -->
-    <iframe ng-class="{'shown': $root.currentUrl}" ng-src="{{$root.currentUrl}}"></iframe>
+    <iframe ng-class="{'shown': $root.currentUrl}" src="{{$root.currentUrl}}"></iframe>
     <div class="meta-container">
       <div class="container">
         <div class="header">

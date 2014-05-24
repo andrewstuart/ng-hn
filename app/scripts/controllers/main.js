@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('tempApp')
-  .controller('MainCtrl', ['$scope', '$http', '$indexedDB', '$sce', '$rootScope', '$location', function ($scope, $http, $indexedDB, $sce, $rootScope, $location) {
+  .controller('MainCtrl', ['$scope', '$http', '$indexedDB', '$sce', '$rootScope', '$location', '$routeParams', function ($scope, $http, $indexedDB, $sce, $rootScope, $location, $routeParams) {
     var stories = $indexedDB.objectStore('stories');
 
     $scope.lengthOptions = [10, 20, 30, 40, 50];
@@ -13,11 +13,6 @@ angular.module('tempApp')
 
     $scope.showFilter = true;
 
-
-    $scope.setStory = function(story) {
-      $rootScope.currentUrl = $sce.trustAsResourceUrl(story.url);
-      $rootScope.currentTitle = story.title;
-    };
 
     var next = '/page';
 
@@ -40,7 +35,43 @@ angular.module('tempApp')
 
       //Finally, start watching for route changes and what not
       $scope.$on('$routeUpdate', function() {
-        $scope.numStories = $location.search().limitTo || 20;
+        var limit = $location.search().limitTo;
+        if (limit) {
+          $scope.numStories = +limit || 20;
+        }
+
+        if($location.search().startFrom) {
+          $scope.startFrom = +$location.search().startFrom || 0;
+        } else {
+          $scope.startFrom = 0;
+        }
+
+        if($location.search().id) {
+          stories.find($location.search().id).then(function(story) {
+            if(story) {
+              $rootScope.currentUrl = $sce.trustAsResourceUrl(story.url);
+              $rootScope.currentTitle = story.title;
+            }
+          });
+        } else {
+          $rootScope.currentUrl = null;
+          $rootScope.currentTitle = null;
+        }
+      });
+
+      $rootScope.$watch('currentUrl', function(url) {
+        if(!url) {
+          $location.search('id', null);
+        }
+      });
+
+      $scope.$watch('startFrom', function(num) {
+        if(num) {
+          $location.search('startFrom', num);
+        } else {
+          $location.search('startFrom', null);
+        }
+
       });
 
       $scope.$watch('numStories', function(num) {
@@ -51,6 +82,10 @@ angular.module('tempApp')
         }
       });
     });
+
+    $scope.setStory = function(story) {
+      $location.search('id', story.id);
+    };
 
     function getPagesAhead (numPages) {
       numPages = numPages || 1;
