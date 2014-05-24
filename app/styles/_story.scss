@@ -75,9 +75,11 @@ iframe.shown {
 
 h1 a {
   color: $ui-main-color;
+  transition-duration: 0.3s;
 
   &:hover {
-    color: red;
+    color: mix(orange, red, 80);
+    text-decoration: none;
   }
 }
 
@@ -125,8 +127,10 @@ section {
   }
 
   &.folded {
-    .fold {
-      transform: rotate(-180deg);
+    box-shadow: inset $offset $offset $offset transparentize(black, 0.9);
+
+    > header > .fold {
+      transform: rotateZ(-180deg);
     }
 
     section {

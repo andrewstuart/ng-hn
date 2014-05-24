@@ -21,7 +21,8 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        reloadOnSearch: false
       })
       .when('/comments/:commentId', {
         templateUrl: 'views/comments.html',

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('tempApp')
-  .controller('MainCtrl', ['$scope', '$http', '$indexedDB', '$sce', '$rootScope', function ($scope, $http, $indexedDB, $sce, $rootScope) {
+  .controller('MainCtrl', ['$scope', '$http', '$indexedDB', '$sce', '$rootScope', '$location', function ($scope, $http, $indexedDB, $sce, $rootScope, $location) {
     var stories = $indexedDB.objectStore('stories');
     var next;
 
@@ -47,6 +47,18 @@ angular.module('tempApp')
       field: 'user',
       name: 'User'
     }];
+
+    $scope.$on('$routeUpdate', function() {
+      $scope.numStories = $location.search().limitTo || 20;
+    });
+
+    $scope.$watch('numStories', function(num) {
+      if(num !== 20) {
+        $location.search('limitTo', num);
+      } else {
+        $location.search('limitTo', null);
+      }
+    });
 
     $scope.sortField = 'position';
 
