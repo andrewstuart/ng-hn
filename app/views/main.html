@@ -17,8 +17,7 @@
   <span class="ago">{{story.createdAgo}}</span> ago
   <span>
     <span class="divider">|</span>
-    <a ng-href="#/comments/{{story.id}}" class="comments">
-      {{story.numComments}} <ng-pluralize count="story.numComments" when="{'1': 'comment', 'other': 'comments'}"></ng-pluralize>
+    <a ng-href="#/comments/{{story.id}}" class="comments">{{story.numComments + ' '}}<ng-pluralize count="story.numComments" when="{'1': 'comment', 'other': 'comments'}"></ng-pluralize>
     </a>
   </span>
 </div>
