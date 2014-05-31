@@ -13,6 +13,14 @@ angular.module('tempApp')
 
     $scope.showFilter = true;
 
+    $scope.getLabel = function(url) {
+      if(url.indexOf('http') === 0) {
+        return url.split('/')[2];
+      } else {
+        return '';
+      }
+    };
+
 
     var next = '/page';
 
