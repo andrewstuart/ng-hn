@@ -7,6 +7,7 @@
       <span class="glyphicon glyphicon-link"></span>
     </a>
     <a ng-click="setStory(story)">{{story.title}}</a>
+    <span class="site-label">{{getLabel(story.url)}}</span>
   </header>
   <span ng-if="story.points">
     <span class="points">({{story.points}})</span>
